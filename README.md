@@ -2,16 +2,20 @@
 
 ## The problem
 
+- Lack of information or difficult to find information about climbling locations, that includes location, grades and type of climbing.
+
+-Proposed solution:
 1. Create a recommendation system which analysis a local informed by the user, the grade and type of climb desired, and using this informations, select and shows the results of near climbing spots to be explored.
 
-2. First of all, the Climbing is a sport that is practiced in two main modalities, Sport and Boulder, and the main difference is that one requires equipments to use a rope and the other a crash pad, that is similar to a matress. So, the information of the type of climbing is very important to recommend the location to the user.
+- Important Considerations:
+1. First of all, the Climbing is a sport that is practiced in two main modalities, Sport and Boulder, and the main difference is that one requires equipments to use a rope and the other a crash pad, that is similar to a matress. So, the information of the type of climbing is very important to recommend the location to the user.
 
-3. Second, the difficult grade is so important as the type of climbing is, because the climber may be not stronger enoght to finish a higher grade than it is used to and otherwise a low grade may be not challenging enought to the climber. So it is very important to recommend a similar Grade informed.
+2. Second, the difficult grade is so important as the type of climbing is, because the climber may be not stronger enoght to finish a higher grade than it is used to and otherwise a low grade may be not challenging enought to the climber. So it is very important to recommend a similar Grade informed.
 
 ## The Dataset
 
-For this recommendation system is was used a dataset from [8a.nu Beta site](https://www.kaggle.com/dcohen21/8anu-climbing-logbook) provided by [David Cohen](https://www.kaggle.com/dcohen21) who collect information of many Routes (the name used to refer a sport line climbed and which has a register) and Boulders (The name used to refer a boulder line is identic to the type of climbing) and provided in this sqlite database.
-The database has 4 tables, but for this project we only used two of then, the ascent and the grade tables to create the two databases needed.
+For this recommendation system it was used a database from [8a.nu Beta site](https://www.kaggle.com/dcohen21/8anu-climbing-logbook) provided by [David Cohen](https://www.kaggle.com/dcohen21) who collect information of many Routes (the name used to refer a sport line climbed and which has a register) and Boulders (The name used to refer a boulder line is identic to the type of climbing) and provided in this sqlite database.
+The database has 4 tables, but for this project we only used two of then, the ascent and the grade tables, to create the two databases needed.
 
 ## Data Preparation
 
@@ -23,11 +27,11 @@ The data preparation was made in some steps listed below:
 
 3. Removed the duplicate itens.
 
-4. To recommend locations the dataset needs the information of latitude and longitude from each Route or Boulder, so the dataset only has the information of the route or boulder name and the crag, sometimes the country. With this informations it was possible to do a Web Scraping using a French site to identfy the city and country where each register is located.
+4. To recommend locations the dataset needs the information of latitude and longitude from each Route or Boulder, so the dataset only has the name and the crag of the route or boulder, sometimes the country information is avaiable. With this informations it was possible to do a Web Scraping using a French site to identify the city and country where each register is located.
 
 5. It was possible to identify that the climb type equal 0 is related to the routes, and the climb type equal 1 is used for boulder, with this information and the grade_id of ascent it is possible to define the grade in a reference system on the grade_results dataset.
 
-6. With all the analysis of necessary columns and itens. It was saved the two final datasets, one with the ascents, grade and location and another with the grades and the reference system os graduation used for each modality.
+6. With all the analysis of necessary columns and itens. It was saved the two final datasets, one with the ascents, grade and location and another with the grades and the reference system of graduation used for each modality.
 
 All the steps are described and the complete process is on [climb_dataset_cleaning](https://github.com/tiagotakeshi/climb-project/blob/366666ca5b7b974286e3c1e907b927c3ff2a3ebb/files/climb_dataset_cleaning.ipynb)
 
