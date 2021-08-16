@@ -58,3 +58,15 @@ This tools has a principal parameter (the perplexity) that defines the number of
 For a better visualization it was tested some sets of perplexity with different numbers of iterations, with this visualization was possible to noticy that the correct number of iteration was needed to be possible the correct visualization of the cluster.
 
 This process can be check on the [dbscan_cluster](https://github.com/tiagotakeshi/climb-project/blob/8373caa334e6ecf01a74b7430bb583049bbdeb41/files/dbscan_clusters.ipynb).
+
+## The interface and deploy
+
+After the definition of the algorithm parameters, all the information necessary to create the recommendation system were prepared. The interface was made using the [streamlit](https://streamlit.io/#install) and the deploy using [heroku](https://www.heroku.com/about) platform.
+The recommendation includes a map, showing the location of the recommendations, the location informed by the user, some stistics about the results and a dataframe with the list of all results. Everything working interactively with the user.
+
+The complete code can be checked [here](https://github.com/tiagotakeshi/climb-project/blob/dfe79661a277c9b462889aa16208a35836ceb3b6/main.py).
+
+This is a initial study of a recommendation system, some of improvemts listed for a future modification includes:
+- A larger dataset to include more location and grades results around the world.
+- A more precisely location reccomendation with variable grades.
+- Filters to make possible the user chose the grade, or location and the statistics, map and the list result be updated interactively.
