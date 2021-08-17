@@ -14,20 +14,20 @@
 
 ## The Dataset
 
-For this recommendation system it was used a database from [8a.nu Beta site](https://www.kaggle.com/dcohen21/8anu-climbing-logbook) provided by [David Cohen](https://www.kaggle.com/dcohen21) who collect information of many Routes (the name used to refer a sport line climbed and which has a register) and Boulders (The name used to refer a boulder line is identic to the type of climbing) and provided in this sqlite database.
-The database has 4 tables, but for this project we only used two of then, the ascent and the grade tables, to create the two databases needed.
+For this recommendation system it was used a database from [8a.nu Beta site](https://www.kaggle.com/dcohen21/8anu-climbing-logbook) provided by [David Cohen](https://www.kaggle.com/dcohen21) who collected information of many Routes (the name used to refer a sport line climbed and which has a register) and Boulders (The name used to refer a boulder line is identic to the type of climbing) and provided in this sqlite database.
+The database has 4 tables, but for this project we only used two of then, the ascent and the grade tables, to create the two datasets needed.
 
 ## Data Preparation
 
 The data preparation was made in some steps listed below:
 
-1. Import the tables from sqlit database and saved then.
+1. The tables were imported from sqlit database and saved.
 
-2. Identify and remove the routes and boulders which has a "?" as the name.
+2. Identified and removed the routes and boulders which has a "?" as the name.
 
 3. Removed the duplicate itens.
 
-4. To recommend locations the dataset needs the information of latitude and longitude from each Route or Boulder, so the dataset only has the name and the crag of the route or boulder, sometimes the country information is avaiable. With this informations it was possible to do a Web Scraping using a French site to identify the city and country where each register is located.
+4. To recommend locations the dataset needs the information of latitude and longitude from each Route or Boulder. The dataset only has the name and the crag of the route or boulder, sometimes the country information is avaiable. With this informations it was possible to do a Web Scraping using a French site to identify the city and country where each register is located.
 
 5. It was possible to identify that the climb type equal 0 is related to the routes, and the climb type equal 1 is used for boulder, with this information and the grade_id of ascent it is possible to define the grade in a reference system on the grade_results dataset.
 
@@ -41,7 +41,7 @@ For the exploratory analysis i used, in my opinion, a library which is really us
 Using this tools it was possible to identify that the dataset has registers with no names, and the results still had names containing "?".
 After the report it was possible to identify some important characteristics in the dataset:
 
-1. It is a unbalanced dataset, which is expected. The quantity of register in each location, countries and cities will be diffenrent. Not only the location, the grades will be lower for the hardests grades and a mid grade of difficult will be de mean.
+1. It is a unbalanced dataset, which is expected. The quantity of register in each location, countries and cities will be diffenrent. Not only the location, the grades will be lower for the hardests grades and a mid grade difficult will be the mean.
 
 2. The unbalenced dataset will affect the result of the recommendation system because, the location with more register, and a larger variaty of grades, will recommend more precisely the results, so if the machine learn algorithm uses the best parameters for this location, it will not work for the location with a lower quantity of register, and the logical is valid for the opposity consideration. So it is necessary to find the best set of parameters for being capable to recommend location with high or at least a minimum quantity of registers.
 
@@ -55,7 +55,7 @@ The complete file with the analysis can be checked as [exploratory_analysis](htt
 	- If the eps was less than 0.3 the clusters were more precise in the latitude and longitude, but the grade in each cluster were the same for all elements.
 	- The minimum samples can not solve the conflict between geo location precision and the limition of the grade in the same cluster.
 
-3. Due the conflict the parameters chosen were defined by a wide geo location range to be able to get a range of grades and be possible for the climber chose one more difficult or an easier one than the informed grade.
+3. Due the conflict, the parameters chosen were defined by a wide geo location range to be able to get a range of grades and be possible for the climber chose one more difficult or an easier one than the informed grade.
 
 To analyze the clusters in a visual way, it was used the [T-SNE](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) tool, which is a dimensional reduction tool.
 This tools has a principal parameter (the perplexity) that defines the number of nearest neighbors used in other manifold learning algorithms. And it affects the way of the dimensional reduction group the clusters.
@@ -74,3 +74,4 @@ This is a initial study of a recommendation system, some of improvemts listed fo
 - A larger dataset to include more location and grades results around the world.
 - A more precisely location reccomendation with variable grades.
 - Filters to make possible the user chose the grade, or location and the statistics, map and the list result be updated interactively.
+- Creation of a checkbox to the algorithm be more accurated to recommend a a specific difficult grade, or a list of grades (the way it works now)
